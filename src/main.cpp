@@ -2,20 +2,37 @@
 #include <string>
 #include "dictionary.hpp"
 #include "error.hpp"
+#include "parser.hpp"
 using namespace std;
 
 int main() {
-    cout << "scheck version 0.1" << endl;
-    Dictionary d( "data/mydict.dat" );
-    string word;
-    string line;
-    while( getline( cin, line ) )  {
-        //parse( line );
+    try {
+        cout << "scheck version 0.4" << endl;
+        Dictionary d( "data/mydict.dat" );
+
+        ifstream sub( "data/sub1.txt" );
+        if ( ! sub.is_open() ) {
+            throw ScheckError( "cannot open data/sub1.txt" );
+        }
+
+        Parser p( sub );
+
+        string word;
+        while( ( word = p.NextWord() ) != "" ) {
+            if ( d.Check( word ) ) {
+                cout << word << " is OK\n";
+            }
+            else {
+                cout << word << " is misspelt\n";
+            }
+        }
     }
-    if ( d.Check( word ) ) {
-        cout << word << " is OK\n";
+    catch( const ScheckError & e ) {
+       cerr << "Error: " << e.what() << endl;
+       return 1;
     }
-    else {
-        cout << word << " is misspelt \n";
-    }
+    catch( ... ) {
+		cerr << "Error: unknown exception" << endl;
+		return 2;
+	}
 }
