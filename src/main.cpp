@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
     cout << "scheck version 0.1" << endl;
-    Dictionary d( "data/not-there-mydict.dat" );
+    Dictionary d( "data/mydict.dat" );
     string word;
     string line;
     while( getline( cin, line ) )  {
