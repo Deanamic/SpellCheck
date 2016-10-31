@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     try {
-        cout << "scheck version 0.4" << endl;
+        cout << "scheck version 0.5" << endl;
         Dictionary d( "data/mydict.dat" );
 
         ifstream sub( "data/sub1.txt" );
