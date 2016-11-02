@@ -4,7 +4,7 @@
 #include <string>
 #include <set>
 #include <fstream>
-#include "error.hpp"
+#include "error.h"
 
 class Dictionary {
     private:

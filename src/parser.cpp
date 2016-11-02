@@ -1,5 +1,5 @@
-#include "parser.hpp"
-#include "error.hpp"
+#include "parser.h"
+#include "error.h"
 
 using std::istream;
 using std::string;
@@ -81,5 +81,5 @@ unsigned int Parser :: LineNo() const {
 }
 
 string Parser :: Context() const {
-    return mLine;
+    return mLine.substr( 0, mLine.size() - 1 );
 }
